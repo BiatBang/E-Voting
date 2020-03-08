@@ -6,12 +6,6 @@ contract Election{
 
     // string public candidate;
 
-    // // constructor
-    // constructor() public {
-    //     // underline means state variable
-    //     candidate = "cand1";
-    // }
-
     // model a candidate
     struct Candidate {
         // unsigned integer
@@ -48,17 +42,19 @@ contract Election{
     );
 
     function vote (uint _candidateId) public {
-        // require that they haven't voted before
+        // check if the voter has voted    
         require(!voters[msg.sender]);
 
-        // require a valid candidate
+        // check if the candidate is valid
         require(_candidateId > 0 && _candidateId <= candidatesCount);
 
-        // record that voter has voted
-        voters[msg.sender] = true;
-
-        // update candidate vote Count
+        // vote for a candidate and update its count
         candidates[_candidateId].voteCount ++;
+
+        // record the voter has votes
+        // how to know who's voter??? why should we know?
+        // however this is the voter
+        // voters[msg.sender] = true;
 
         // trigger voted event
         emit votedEvent(_candidateId);
