@@ -1,5 +1,9 @@
 {
   "server": {
     "baseDir": ["./src", "./build/contracts"]
+  },
+  "port": 3000,
+  "routes": {
+    "/tally": "src/tally"
   }
 }
