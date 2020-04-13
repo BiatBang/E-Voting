@@ -2,19 +2,134 @@
 <html>
 
 <head>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/jquery.jqplot.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/plugins/jqplot.pieRenderer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/plugins/jqplot.enhancedPieLegendRenderer.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
     <script src="js/tally.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/truffle-contract.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/jquery.jqplot.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title> tally </title>
 </head>
 
 <body>
-    nimade
+    <h1 class="text-center">Result of 2020 Election</h1>
+    <div id="myChart" class="vote-chart jqplot-event-canvas"></div>
+    <table id="tallyTable" class="table tally-table">
+        <thead>
+            <tr>
+                <th>candidate</th>
+                <th>count</th>
+            </tr>
+        </thead>
+    </table>
 
-    <button id="tallyBtn" class="btn">tally</button>
+    <table id="voteTable" class="table tally-table">
+        <thead>
+            <tr>
+                <th>voteId</th>
+                <th>voter</th>
+                <th>candidate</th>
+            </tr>
+        </thead>
+    </table>
 
-    <table id="tallyTable"></table>
+    <div class="tally-btn-block">
+        <button id="tallyBtn" class="btn btn-primary  tally-btn">tally</button>
+    </div>
+
+    <div class="verify-block">
+        <button id="verifyBtn" class="btn btn-primary  verify-btn">verify</button>
+        <div class="verify-msg-block">
+            <label id="verifyRes" class="verify-msg"></label>
+            <label id="chainRes" class="verify-msg"></label>
+        </div>
+    </div>
 </body>
 
 </html>
+
+<style>
+    .vote-chart {
+        height: 200px !important;
+        width: 500px !important;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .text-center {
+        font-size: 36px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.1;
+        color: inherit;
+    }
+
+    .tally-table {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+    }
+
+    .tally-btn-block {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-top: 70px;
+    }
+
+    .tally-btn {
+        display: block;
+        width: 20%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .verify-block {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-top: 70px;
+    }
+
+    .verify-btn {
+        display: block;
+        width: 20%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .verify-msg-block {
+        margin-top: 20px;
+        padding: 10px;
+        border: solid;
+        border-radius: 5px;
+        border-width: 1px;
+        border-color: #d7d7e4;
+        margin-bottom: 30px;
+    }
+
+    .verify-msg {
+        display: block;
+        font-size: 18px;
+    }
+</style>

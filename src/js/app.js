@@ -83,12 +83,10 @@ App = {
         electionInstance.candidates(i).then(function (candidate) {
           var id = candidate[0];
           var name = candidate[1];
-          var voteCount = candidate[2];
           var content = candidate[3];
-          var add = candidate[4];
 
           // Render candidate Result
-          var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + content + "</td><td>" + add + "</td></tr>"
+          var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + content + "</td></tr>"
           candidatesResults.append(candidateTemplate);
 
           // Render candidate ballot option
@@ -97,13 +95,13 @@ App = {
         });
       }
       console.log(App.account);
-    //   return electionInstance.buildVoter(App.account);
-    // }).then(() => {
       return electionInstance.voters(App.account);
     }).then(function (voter) {
       // Do not allow a user to vote
-      if (voter != null && voter.hasVoted) {
+      console.log(voter)
+      if (voter != null && voter[1]) {
         $('form').hide();
+        $('#voteMsg').text("you have voted");
       }
       loader.hide();
       content.show();
@@ -133,72 +131,3 @@ $(function () {
     App.init();
   });
 });
-
-// App = {
-//   web3Provider: null,
-//   contracts: {},
-
-//   init: async function() {
-//     // Load pets.
-//     $.getJSON('../pets.json', function(data) {
-//       var petsRow = $('#petsRow');
-//       var petTemplate = $('#petTemplate');
-
-//       for (i = 0; i < data.length; i ++) {
-//         petTemplate.find('.panel-title').text(data[i].name);
-//         petTemplate.find('img').attr('src', data[i].picture);
-//         petTemplate.find('.pet-breed').text(data[i].breed);
-//         petTemplate.find('.pet-age').text(data[i].age);
-//         petTemplate.find('.pet-location').text(data[i].location);
-//         petTemplate.find('.btn-adopt').attr('data-id', data[i].id);
-
-//         petsRow.append(petTemplate.html());
-//       }
-//     });
-
-//     return await App.initWeb3();
-//   },
-
-//   initWeb3: async function() {
-//     /*
-//      * Replace me...
-//      */
-
-//     return App.initContract();
-//   },
-
-//   initContract: function() {
-//     /*
-//      * Replace me...
-//      */
-
-//     return App.bindEvents();
-//   },
-
-//   bindEvents: function() {
-//     $(document).on('click', '.btn-adopt', App.handleAdopt);
-//   },
-
-//   markAdopted: function(adopters, account) {
-//     /*
-//      * Replace me...
-//      */
-//   },
-
-//   handleAdopt: function(event) {
-//     event.preventDefault();
-
-//     var petId = parseInt($(event.target).data('id'));
-
-//     /*
-//      * Replace me...
-//      */
-//   }
-
-// };
-
-// $(function() {
-//   $(window).load(function() {
-//     App.init();
-//   });
-// });
